@@ -3,8 +3,16 @@
     Easy to use loader for executors
     
     Usage:
-    loadstring(game:HttpGet("YOUR_URL_HERE"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/YOURUSERNAME/YOURREPO/main/src/loader.lua"))()
 --]]
+
+-- GitHub configuration
+local GITHUB_USER = "YOURUSERNAME"  -- Replace with your GitHub username
+local GITHUB_REPO = "YOURREPO"      -- Replace with your repository name  
+local GITHUB_BRANCH = "main"        -- Usually "main" or "master"
+
+-- Base URL for raw GitHub content
+local BASE_URL = string.format("https://raw.githubusercontent.com/%s/%s/%s/", GITHUB_USER, GITHUB_REPO, GITHUB_BRANCH)
 
 -- Check if gethui is available (executor environment)
 local function getGuiParent()
@@ -26,18 +34,18 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
--- Load components (you would replace these URLs with your actual file URLs)
+-- Load components (GitHub URLs)
 local components = {
-    Window = loadstring(game:HttpGet("WINDOW_URL"))(),
-    Button = loadstring(game:HttpGet("BUTTON_URL"))(),
-    Toggle = loadstring(game:HttpGet("TOGGLE_URL"))(),
-    Slider = loadstring(game:HttpGet("SLIDER_URL"))(),
-    Textbox = loadstring(game:HttpGet("TEXTBOX_URL"))(),
-    Dropdown = loadstring(game:HttpGet("DROPDOWN_URL"))(),
-    Label = loadstring(game:HttpGet("LABEL_URL"))(),
-    Themes = loadstring(game:HttpGet("THEMES_URL"))(),
-    Utils = loadstring(game:HttpGet("UTILS_URL"))(),
-    Icons = loadstring(game:HttpGet("ICONS_URL"))()
+    Window = loadstring(game:HttpGet(BASE_URL .. "src/window.lua"))(),
+    Button = loadstring(game:HttpGet(BASE_URL .. "elements/button.lua"))(),
+    Toggle = loadstring(game:HttpGet(BASE_URL .. "elements/toggle.lua"))(),
+    Slider = loadstring(game:HttpGet(BASE_URL .. "elements/slider.lua"))(),
+    Textbox = loadstring(game:HttpGet(BASE_URL .. "elements/textbox.lua"))(),
+    Dropdown = loadstring(game:HttpGet(BASE_URL .. "elements/dropdown.lua"))(),
+    Label = loadstring(game:HttpGet(BASE_URL .. "elements/label.lua"))(),
+    Themes = loadstring(game:HttpGet(BASE_URL .. "themes/init.lua"))(),
+    Utils = loadstring(game:HttpGet(BASE_URL .. "utils/init.lua"))(),
+    Icons = loadstring(game:HttpGet(BASE_URL .. "src/icons.lua"))()
 }
 
 -- Create library object
